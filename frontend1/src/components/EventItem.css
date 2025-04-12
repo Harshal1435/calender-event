@@ -1,0 +1,29 @@
+.event-item {
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  padding: 5px;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.8rem;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.event-item:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.event-time {
+  font-size: 0.7rem;
+  opacity: 0.9;
+}
+
+.event-title {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
