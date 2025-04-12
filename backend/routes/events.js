@@ -69,14 +69,18 @@ router.put("/:id", async (req, res) => {
 // Delete an event
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
+  console.log("Received delete request for ID:", id);
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).send("No event with that ID.");
+    return res.status(404).send("Invalid ID format.");
   }
 
   try {
-    await Event.findByIdAndRemove(id);
-    res.status(200).json({ message: "Event deleted successfully" });
+    const deletedEvent = await Event.findByIdAndDelete(id);
+    if (!deletedEvent) {
+      return res.status(404).json({ message: "No event found with that ID." });
+    }
+    res.status(200).json({ message: "Event deleted successfully", deletedEvent });
   } catch (error) {
     console.error("Delete Event Error:", error);
     res.status(500).json({ message: error.message });
